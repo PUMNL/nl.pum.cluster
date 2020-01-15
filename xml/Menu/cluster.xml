@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<menu>
+  <item>
+    <path>civicrm/clusterlist</path>
+    <page_callback>CRM_Cluster_Page_Clusterlist</page_callback>
+    <title>Clusterlist</title>
+    <access_arguments>administer CiviCRM</access_arguments>
+  </item>
+  <item>
+    <path>civicrm/clusterlist/add</path>
+    <page_callback>CRM_Cluster_Form_Cluster</page_callback>
+    <title>Add new cluster</title>
+    <access_arguments>administer CiviCRM</access_arguments>
+  </item>
+  <item>
+    <path>civicrm/clusterlist/edit</path>
+    <page_callback>CRM_Cluster_Form_Cluster</page_callback>
+    <title>Update cluster</title>
+    <access_arguments>administer CiviCRM</access_arguments>
+  </item>
+  <item>
+    <path>civicrm/entitycluster/edit</path>
+    <page_callback>CRM_Cluster_Form_EntityCluster</page_callback>
+    <title>Update cluster on entity</title>
+    <access_arguments>access CiviCRM</access_arguments>
+  </item>
+</menu>
