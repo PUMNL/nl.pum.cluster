@@ -14,6 +14,7 @@ class CRM_Cluster_Upgrader extends CRM_Cluster_Upgrader_Base {
    */
   public function install() {
     $this->executeSqlFile('sql/create_clustertables.sql');
+    $this->executeSqlFile('sql/initial_clusters_import.sql');
   }
 
   /**
