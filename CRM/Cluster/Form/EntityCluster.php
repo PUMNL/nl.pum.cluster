@@ -188,18 +188,31 @@ class CRM_Cluster_Form_EntityCluster extends CRM_Core_Form {
           'version' => 3,
           'sequential' => 1,
           'contact_id' => $client_id,
-          'is_primary' => 1
+          'return' => 'country,contact_type,contact_sub_type',
         );
-        $result = civicrm_api('Address', 'get', $params);
+        $result = civicrm_api('Contact', 'get', $params);
+
         foreach($result['values'] as $key => $value){
           if(!empty($value['country_id'])){
             $country_id = $value['country_id'];
           }
         }
+
+        if (empty($country_id)) {
+          foreach($result['values'] as $key => $value) {
+            if (is_array($result['values'][$key]['contact_sub_type']) && in_array('Country',$result['values'][$key]['contact_sub_type'])) {
+              $country_id_query = CRM_Core_DAO::executeQuery("SELECT * FROM civicrm_value_country WHERE entity_id = '".$value['contact_id']."'");
+              while($country_id_query->fetch()) {
+                $country_id = $country_id_query->civicrm_country_id;
+              }
+            }
+          }
+        }
       }
 
-      $parentList = CRM_Cluster_Utils::getList(1,$country_id);
-
+      if(!empty($country_id)) {
+        $parentList = CRM_Cluster_Utils::getList(1,$country_id);
+      }
       asort($parentList);
     }
     return $parentList;
