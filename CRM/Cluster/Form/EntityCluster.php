@@ -77,11 +77,8 @@ class CRM_Cluster_Form_EntityCluster extends CRM_Core_Form {
     $this->entityCluster['cluster_id'] = (int)$this->_submitValues['cluster'];
 
     if($this->entityCluster['entity_type'] == 'case') {
-      if (!empty($this->entityCluster['cluster_id'])){
-        CRM_Cluster_BAO_EntityCluster::add($this->entityCluster);
-      } else {
-        CRM_Cluster_BAO_EntityCluster::remove($this->entityCluster);
-      }
+      //Always add the entry so that it is always visible that it is a decision not to assign a cluster to the entity
+      CRM_Cluster_BAO_EntityCluster::add($this->entityCluster);
     }
 
     if($_SERVER['REQUEST_URI'] == '/civicrm/entitycluster/edit'){
@@ -140,7 +137,7 @@ class CRM_Cluster_Form_EntityCluster extends CRM_Core_Form {
       $this->add('hidden', 'entity_type', $_GET['entity_type']);
     }
     // add form elements
-    $this->add('select', 'cluster', ts('Cluster'), array("- select -")+$parentList,0,1);
+    $this->add('select', 'cluster', ts('Cluster'), array("- no cluster -")+$parentList,0,1);
 
     $this->addButtons(array(
       array('type' => 'next', 'name' => ts('Save'), 'isDefault' => TRUE),

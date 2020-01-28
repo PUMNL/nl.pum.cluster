@@ -49,6 +49,12 @@ class CRM_Cluster_Page_ClusterLink extends CRM_Core_Page {
       $this->assign('caseId', $dao->case_id);
       $this->assign('caseContactId', $dao->contact_id);
       $this->assign('linked_to_cluster_id', $dao->cluster_id);
+
+      if(is_null($dao->cluster_id)) {
+        $dao->cluster_label = '-Please select cluster-';
+      } else if((int)$dao->cluster_id === 0) {
+        $dao->cluster_label = '-no cluster-';
+      }
       $this->assign('linked_to_cluster_label', $dao->cluster_label);
 
       //render the template
