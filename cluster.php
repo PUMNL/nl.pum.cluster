@@ -157,7 +157,7 @@ function cluster_civicrm_preProcess($formName, &$form) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_navigationMenu
  */
-function cluster_civicrm_navigationMenu(&$menu) {
+function cluster_civicrm_navigationMenu(&$params) {
   $item = array (
     'name'          =>  ts('PUM Clusterlist'),
     'url'           =>  CRM_Utils_System::url('civicrm/clusterlist', 'reset=1', true),
@@ -181,7 +181,7 @@ function cluster_civicrm_navigationMenu(&$menu) {
       'active'     => 1
     ));
 
-  _cluster_civix_insert_navigation_menu($menu, 'Administer', $item);
+  _cluster_civix_insert_navigation_menu($params, 'Administer', $item);
 }
 
 function cluster_civicrm_caseSummary($caseId) {
