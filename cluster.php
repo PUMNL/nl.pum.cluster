@@ -157,17 +157,17 @@ function cluster_civicrm_preProcess($formName, &$form) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_navigationMenu
  */
-function cluster_civicrm_navigationMenu(&$params) {
+function cluster_civicrm_navigationMenu(&$menu) {
   $item = array (
     'name'          =>  ts('PUM Clusterlist'),
     'url'           =>  CRM_Utils_System::url('civicrm/clusterlist', 'reset=1', true),
     'permission'    => 'administer CiviCRM',
   );
 
-  $maxKey = CRM_Cluster_Utils::getMaxMenuKey($params);
+  $maxKey = CRM_Cluster_Utils::getMaxMenuKey($menu);
   $menuAdministerId = CRM_Core_DAO::getFieldValue('CRM_Core_DAO_Navigation', 'Administer', 'id', 'name');
   $menuParentId = CRM_Core_DAO::getFieldValue('CRM_Core_DAO_Navigation', 'Customize Data and Screens', 'id', 'name');
-  $params[$menuAdministerId]['child'][$menuParentId]['child'][$maxKey+1] =
+  $menu[$menuAdministerId]['child'][$menuParentId]['child'][$maxKey+1] =
     array (
     'attributes' => array (
       'label'      => ts('Manage Clusters'),
@@ -181,7 +181,7 @@ function cluster_civicrm_navigationMenu(&$params) {
       'active'     => 1
     ));
 
-  _cluster_civix_insert_navigation_menu($params, 'Administer', $item);
+  _cluster_civix_insert_navigation_menu($menu, 'Administer', $item);
 }
 
 function cluster_civicrm_caseSummary($caseId) {

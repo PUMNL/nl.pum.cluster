@@ -21,14 +21,16 @@ class CRM_Cluster_Utils {
    */
   public static function getMaxMenuKey($menuItems) {
     $maxKey = 0;
-    foreach ($menuItems as $menuKey => $menuItem) {
-      if ($menuKey > $maxKey) {
-        $maxKey = $menuKey;
-      }
-      if (isset($menuItem['child'])) {
-        foreach ($menuItem['child'] as $childKey => $child) {
-          if ($childKey > $maxKey) {
-            $maxKey = $childKey;
+    if(is_array($menuItems)){
+      foreach ($menuItems as $menuKey => $menuItem) {
+        if ($menuKey > $maxKey) {
+          $maxKey = $menuKey;
+        }
+        if (isset($menuItem['child'])) {
+          foreach ($menuItem['child'] as $childKey => $child) {
+            if ($childKey > $maxKey) {
+              $maxKey = $childKey;
+            }
           }
         }
       }
