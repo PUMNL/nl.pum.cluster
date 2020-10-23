@@ -42,7 +42,7 @@ class CRM_Cluster_BAO_Cluster extends CRM_Cluster_DAO_Cluster {
       throw new Exception('Params can not be empty when adding or updating a Cluster');
     }
 
-    if (is_numeric($params['id'])) {
+    if (isset($params['id']) && is_numeric($params['id'])) {
       CRM_Utils_Hook::pre('edit', 'Cluster', $params['id'], $params);
     }
     else {
@@ -59,7 +59,7 @@ class CRM_Cluster_BAO_Cluster extends CRM_Cluster_DAO_Cluster {
     $cluster->save();
     CRM_Core_DAO::storeValues($cluster, $result);
 
-    if (is_numeric($params['id'])) {
+    if (isset($params['id']) && is_numeric($params['id'])) {
       CRM_Utils_Hook::post('edit', 'Cluster', $params['id'], $cluster);
     }
     else {
