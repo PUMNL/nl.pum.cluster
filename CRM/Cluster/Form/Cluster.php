@@ -93,7 +93,7 @@ class CRM_Cluster_Form_Cluster extends CRM_Core_Form {
     // add form elements
     $this->add('text', 'name', ts('Name'), array('size' => 128), FALSE);
     $this->add('text', 'label', ts('Label'), array('size' => 128), TRUE);
-    $this->add('checkbox', 'is_active', ts('Is Active'), array(), FALSE);
+    $this->add('checkbox', 'is_active', ts('Is Active'), '', FALSE);
     /*
       //This was originally meant for selecting multiple countries per cluster,
       //But pum deciced that each cluster is specific to that country even if it has the same name ¯\_(ツ)_/¯
